@@ -18,3 +18,4 @@ services:
         value: root
       - key: DB_NAME
         value: shopsphere_db
+

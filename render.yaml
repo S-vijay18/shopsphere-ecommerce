@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: shopsphere-ecommerce
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        value: 127.0.0.1
+      - key: DB_PORT
+        value: 3306
+      - key: DB_USER
+        value: root
+      - key: DB_NAME
+        value: shopsphere_db

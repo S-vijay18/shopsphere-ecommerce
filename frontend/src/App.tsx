@@ -16,7 +16,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 
 export const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/shopsphere-ecommerce">
       <AuthProvider>
         <CartProvider>
           <WishlistProvider>

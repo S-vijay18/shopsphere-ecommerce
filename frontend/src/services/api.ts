@@ -3,7 +3,10 @@ import {
   FALLBACK_CATEGORIES,
   FALLBACK_PRODUCTS,
   getFallbackSections,
-  getFallbackProduct
+  getFallbackProduct,
+  FALLBACK_CUSTOMERS,
+  FALLBACK_STATS,
+  FALLBACK_ORDERS
 } from './fallbackData';
 
 // Automatically detect environment:
@@ -157,6 +160,94 @@ api.interceptors.response.use(
             brands
           }
         });
+      }
+
+      // 5. Admin Endpoints Fallback
+      if (url.includes('/admin/customers')) {
+        return Promise.resolve({
+          data: { success: true, customers: FALLBACK_CUSTOMERS }
+        });
+      }
+
+      if (url.includes('/admin/stats')) {
+        return Promise.resolve({
+          data: { success: true, stats: FALLBACK_STATS }
+        });
+      }
+
+      if (url.includes('/admin/orders')) {
+        return Promise.resolve({
+          data: { success: true, orders: FALLBACK_ORDERS }
+        });
+      }
+
+      // 6. User Profile Fallback
+      if (url.includes('/auth/profile')) {
+        const token = localStorage.getItem('shopsphere_token') || '';
+        if (token.includes('admin') || token === 'mock_admin_token') {
+          return Promise.resolve({
+            data: {
+              success: true,
+              user: {
+                id: 1,
+                name: 'Admin Manager',
+                email: 'admin@shopsphere.com',
+                phone: '+91 98765 43210',
+                role: 'admin',
+                avatar_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80'
+              }
+            }
+          });
+        }
+      }
+    }
+
+    // POST Fallbacks (Auth login / register offline demo resilience)
+    if (method === 'post') {
+      if (url.includes('/auth/login')) {
+        try {
+          const body = typeof error.config?.data === 'string' ? JSON.parse(error.config.data) : error.config?.data || {};
+          const email = (body.email || '').toLowerCase().trim();
+          const password = body.password || '';
+
+          if (email === 'admin@shopsphere.com' && (password === 'admin123' || password.length >= 6)) {
+            return Promise.resolve({
+              data: {
+                success: true,
+                message: 'Admin login successful',
+                token: 'mock_admin_token',
+                user: {
+                  id: 1,
+                  name: 'Admin Manager',
+                  email: 'admin@shopsphere.com',
+                  phone: '+91 98765 43210',
+                  role: 'admin',
+                  avatar_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80'
+                }
+              }
+            });
+          }
+
+          if (email === 'customer@example.com' || password.length >= 6) {
+            return Promise.resolve({
+              data: {
+                success: true,
+                message: 'Login successful',
+                token: 'mock_customer_token',
+                user: {
+                  id: 2,
+                  name: email.split('@')[0] || 'Rahul Sharma',
+                  email: email,
+                  phone: '+91 91234 56789',
+                  role: 'customer',
+                  avatar_url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80'
+                }
+              }
+            });
+          }
+        } catch {
+          // continue to reject
+        }
       }
     }
 

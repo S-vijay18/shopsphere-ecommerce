@@ -669,3 +669,137 @@ export const getFallbackProduct = (slugOrId: string): Product | undefined => {
   const numId = parseInt(slugOrId, 10);
   return FALLBACK_PRODUCTS.find(p => p.slug === slugOrId || (!isNaN(numId) && p.id === numId));
 };
+
+export const FALLBACK_CUSTOMERS = [
+  {
+    id: 2,
+    name: 'Rahul Sharma',
+    email: 'customer@example.com',
+    phone: '+91 91234 56789',
+    avatar_url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
+    orderCount: 3,
+    totalSpent: 12450,
+    created_at: '2026-10-15T10:30:00.000Z'
+  },
+  {
+    id: 3,
+    name: 'Priya Patel',
+    email: 'priya.patel@gmail.com',
+    phone: '+91 98450 12345',
+    avatar_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+    orderCount: 2,
+    totalSpent: 2899,
+    created_at: '2026-10-18T14:15:00.000Z'
+  },
+  {
+    id: 4,
+    name: 'Amit Kumar',
+    email: 'amit.kumar@yahoo.com',
+    phone: '+91 97110 54321',
+    avatar_url: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=150&q=80',
+    orderCount: 5,
+    totalSpent: 42190,
+    created_at: '2026-10-20T09:00:00.000Z'
+  },
+  {
+    id: 5,
+    name: 'Sneha Reddy',
+    email: 'sneha.reddy@outlook.com',
+    phone: '+91 99887 76655',
+    avatar_url: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80',
+    orderCount: 1,
+    totalSpent: 999,
+    created_at: '2026-10-25T16:45:00.000Z'
+  }
+];
+
+export const FALLBACK_STATS = {
+  totalProducts: 20,
+  totalOrders: 11,
+  totalCustomers: 4,
+  totalRevenue: 58538
+};
+
+export const FALLBACK_ORDERS = [
+  {
+    id: 'OD1793510001',
+    user_id: 2,
+    user_name: 'Rahul Sharma',
+    user_email: 'customer@example.com',
+    user_phone: '+91 91234 56789',
+    total_amount: 114900,
+    final_amount: 114900,
+    delivery_charge: 0,
+    order_status: 'Delivered',
+    payment_method: 'UPI / Online Payment',
+    payment_status: 'Paid',
+    delivery_address: {
+      full_name: 'Rahul Sharma',
+      address_line: 'Flat 402, Sunshine Residency, 80 Feet Road',
+      locality: 'Koramangala 4th Block',
+      city: 'Bengaluru',
+      state: 'Karnataka',
+      pincode: '560034',
+      phone: '+91 91234 56789'
+    },
+    items: [
+      {
+        id: 1,
+        product_id: 6,
+        name: 'Apple MacBook Air M3 (13.6-inch Liquid Retina, 16GB, 512GB SSD)',
+        image_url: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=700&q=80',
+        price: 114900,
+        quantity: 1,
+        color: 'Midnight',
+        size: '16GB / 512GB'
+      }
+    ],
+    created_at: '2026-10-28T11:20:00.000Z'
+  },
+  {
+    id: 'OD1793510002',
+    user_id: 3,
+    user_name: 'Priya Patel',
+    user_email: 'priya.patel@gmail.com',
+    user_phone: '+91 98450 12345',
+    total_amount: 2898,
+    final_amount: 2898,
+    delivery_charge: 0,
+    order_status: 'Shipped',
+    payment_method: 'Cash on Delivery',
+    payment_status: 'Pending',
+    delivery_address: {
+      full_name: 'Priya Patel',
+      address_line: 'B-12, Green Glen Layout, Bellandur',
+      locality: 'Bellandur',
+      city: 'Bengaluru',
+      state: 'Karnataka',
+      pincode: '560103',
+      phone: '+91 98450 12345'
+    },
+    items: [
+      {
+        id: 2,
+        product_id: 13,
+        name: 'BIBA Women Printed Cotton Anarkali Kurta with Palazzo & Dupatta',
+        image_url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80',
+        price: 1899,
+        quantity: 1,
+        color: 'Blush Pink',
+        size: 'M'
+      },
+      {
+        id: 3,
+        product_id: 10,
+        name: 'boAt Airdopes 141 Bluetooth Truly Wireless in Ear Earbuds',
+        image_url: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=700&q=80',
+        price: 999,
+        quantity: 1,
+        color: 'Bold Black',
+        size: 'Standard'
+      }
+    ],
+    created_at: '2026-10-30T15:45:00.000Z'
+  }
+];
+

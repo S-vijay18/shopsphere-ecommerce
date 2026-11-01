@@ -425,14 +425,14 @@ export const Header: React.FC = () => {
                     <Store className="w-4 h-4 text-[#2874f0]" />
                     <span>Become a Seller</span>
                   </a>
-                  <a
-                    href="#footer"
+                  <Link
+                    to="/about"
                     onClick={() => setShowMoreDropdown(false)}
                     className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-100"
                   >
                     <HelpCircle className="w-4 h-4 text-[#2874f0]" />
-                    <span>24x7 Customer Care</span>
-                  </a>
+                    <span>24x7 Customer Care & About</span>
+                  </Link>
                   <a
                     href="#advertise"
                     onClick={() => setShowMoreDropdown(false)}

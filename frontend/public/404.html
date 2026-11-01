@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ShopSphere - Redirecting...</title>
+  <script>
+    // GitHub Pages SPA Hash Redirect
+    // Redirects any direct URL access to HashRouter root
+    var path = window.location.pathname;
+    var repoName = '/shopsphere-ecommerce';
+    if (path.startsWith(repoName)) {
+      var subPath = path.substring(repoName.length);
+      if (subPath && subPath !== '/') {
+        window.location.replace(repoName + '/#' + subPath + window.location.search);
+      } else {
+        window.location.replace(repoName + '/#/' + window.location.search);
+      }
+    } else {
+      window.location.replace('/#/' + window.location.search);
+    }
+  </script>
+</head>
+<body>
+  <p style="font-family: sans-serif; text-align: center; margin-top: 50px;">Redirecting to ShopSphere...</p>
+</body>
+</html>
